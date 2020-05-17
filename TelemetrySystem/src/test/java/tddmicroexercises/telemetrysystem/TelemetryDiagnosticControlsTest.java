@@ -6,27 +6,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import tddmicroexercises.telemetrysystem.impl.TelemetryClient;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(TelemetryDiagnosticControls.class)
+@RunWith(MockitoJUnitRunner.class)
 public class TelemetryDiagnosticControlsTest {
 
     private TelemetryDiagnosticControls telemetryDiagnosticControls;
 
     @Mock
-    TelemetryClient mockedTelemetryClient;
+    ITelemetryClient mockedTelemetryClient;
 
     @Before
     public void setup() throws Exception {
-        PowerMockito.whenNew(TelemetryClient.class).withNoArguments().thenReturn(mockedTelemetryClient);
         telemetryDiagnosticControls = new TelemetryDiagnosticControls(mockedTelemetryClient);
     }
 
