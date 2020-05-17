@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import tddmicroexercises.telemetrysystem.impl.TelemetryClient;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -26,7 +27,7 @@ public class TelemetryDiagnosticControlsTest {
     @Before
     public void setup() throws Exception {
         PowerMockito.whenNew(TelemetryClient.class).withNoArguments().thenReturn(mockedTelemetryClient);
-        telemetryDiagnosticControls = new TelemetryDiagnosticControls();
+        telemetryDiagnosticControls = new TelemetryDiagnosticControls(mockedTelemetryClient);
     }
 
     @Test

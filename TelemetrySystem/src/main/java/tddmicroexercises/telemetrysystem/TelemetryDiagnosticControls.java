@@ -3,11 +3,11 @@ package tddmicroexercises.telemetrysystem;
 public class TelemetryDiagnosticControls {
     private final String DiagnosticChannelConnectionString = "*111#";
 
-    private final TelemetryClient telemetryClient;
+    private final ITelemetryClient telemetryClient;
     private String diagnosticInfo = "";
 
-    public TelemetryDiagnosticControls() {
-        telemetryClient = new TelemetryClient();
+    public TelemetryDiagnosticControls(ITelemetryClient telemetryClient) {
+        this.telemetryClient = telemetryClient;
     }
 
     public String getDiagnosticInfo() {
@@ -33,7 +33,7 @@ public class TelemetryDiagnosticControls {
             throw new Exception("Unable to connect.");
         }
 
-        telemetryClient.send(TelemetryClient.DIAGNOSTIC_MESSAGE);
+        telemetryClient.send(ITelemetryClient.DIAGNOSTIC_MESSAGE);
         diagnosticInfo = telemetryClient.receive();
     }
 }
